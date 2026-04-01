@@ -59,6 +59,9 @@ main {
   font-weight: 500;
   font-size: clamp(1.25rem, 4vw, 2rem);
   line-height: 1.5;
+  height: calc(1.5em * 3);       /* fixed height for up to 3 lines — never changes */
+  display: grid;
+  place-items: center;
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
