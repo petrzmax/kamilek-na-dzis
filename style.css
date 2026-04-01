@@ -1,0 +1,116 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  padding: 1.5rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ── Quote area ── */
+
+.quote-box {
+  position: relative;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.quote-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  line-height: 1.5;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.quote-text::before {
+  content: '\201E';
+}
+
+.quote-text::after {
+  content: '\201D';
+}
+
+/* States during shuffle */
+.quote-text.shuffling {
+  opacity: 0.45;
+}
+
+/* Final reveal */
+.quote-text.landed {
+  animation: land 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes land {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Button ── */
+
+button {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.95rem, 2.5vw, 1.125rem);
+  font-weight: 600;
+  padding: 0.85em 2em;
+  border: 2px solid #1a1a1a;
+  border-radius: 9999px;
+  background: #1a1a1a;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:hover {
+  background: #ffffff;
+  color: #1a1a1a;
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+button:disabled:hover {
+  background: #1a1a1a;
+  color: #ffffff;
+}
