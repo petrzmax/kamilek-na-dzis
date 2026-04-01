@@ -65,14 +65,6 @@ main {
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
-.quote-text::before {
-  content: '\201E';
-}
-
-.quote-text::after {
-  content: '\201D';
-}
-
 /* States during shuffle */
 .quote-text.shuffling {
   opacity: 0.45;

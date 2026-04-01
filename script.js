@@ -18,10 +18,12 @@
 
   function randomQuote(exclude) {
     if (quotes.length <= 1) return quotes[0] || '';
+    // Strip surrounding quote marks for comparison
+    const bare = exclude.replace(/^[\u201E]|[\u201D]$/g, '');
     let pick;
     do {
       pick = quotes[Math.floor(Math.random() * quotes.length)];
-    } while (pick === exclude);
+    } while (pick === bare);
     return pick;
   }
 
@@ -40,7 +42,7 @@
 
     function tick() {
       if (step < totalSteps) {
-        quoteEl.textContent = randomQuote(quoteEl.textContent);
+        quoteEl.textContent = '\u201E' + randomQuote(quoteEl.textContent) + '\u201D';
 
         // Ease-out timing: delay grows quadratically
         const t = step / totalSteps;
@@ -50,7 +52,7 @@
         setTimeout(tick, delay);
       } else {
         // Land on the chosen quote
-        quoteEl.textContent = finalQuote;
+        quoteEl.textContent = '\u201E' + finalQuote + '\u201D';
         quoteEl.classList.remove('shuffling');
         quoteEl.classList.add('landed');
         btn.disabled = false;
